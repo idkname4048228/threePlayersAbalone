@@ -1,0 +1,106 @@
+
+<head>
+
+  <title>
+    This is test file.
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1,
+    minimum-scale=0.5, maximum-scale=1.5">
+</head>
+
+
+<body>
+  <style>
+    body {
+    min-width: 500px ;
+    height: 100vh;
+    margin: 0;
+    background: bisque;
+    }#svg {
+    display: block;
+    height: 100%;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    z-index: 0;
+    }#hole{
+      z-index:1;
+    }#select{
+      z-index:0;
+    }
+
+  
+  </style>
+  <div id="message"></div>
+  <div>
+    <svg id="svg" viewbox="-50,-50,300,300" xmlns="http://www.w3.org/2000/svg">
+      <defs> 
+        <radialGradient id="hole-color">
+        <stop offset="0%" style="stop-color:#2f2f2f" />
+        <stop offset="50%" style="stop-color:#464646" />
+      </radialGradient>
+        <circle id="hole" r="7" fill = 'url(#hole-color)'/>
+        <circle id="select" r="8" fill = "stroke:#07da00;
+                                          stroke-width:1"/>
+        
+      
+    </defs>
+    
+      
+        
+      
+      <polygon
+        points="200,100
+        150.0,186.60254037844385
+        50.0,186.60254037844385
+        0,100
+        50.0,13.397459621556138
+        150.0,13.397459621556138
+        "
+        style="fill:#888888;
+        stroke:#000000;
+        stroke-width:1"/>
+      </svg>
+    </div>
+  </body>
+
+  <script>
+
+    const svg = document.getElementById('svg');
+    const holes = [];
+    for(let row = 0; row < 9; row++){
+      holes.push([]);
+      var y = (100 - ((4 - row) * 10 * Math.sqrt(3))).toString();
+      for(let cloumn = 0; cloumn < 9 - (Math.abs(4 - row)); cloumn++){
+        const hole = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+        const mark = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+        holes[row].push(hole);
+        var x = (11 - (9 - (Math.abs(4 - row)))) * 10;
+        hole.setAttribute('id', "hole-" + (row  * 10 + cloumn).toString());
+        
+        hole.setAttribute('x', (x + (20 * cloumn)).toString());
+        hole.setAttribute('y', y);
+        hole.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#hole');
+
+        mark.setAttribute('id', "mark-" + (row  * 10 + cloumn).toString());
+        mark.setAttribute('x', (x + (20 * cloumn)).toString());
+        mark.setAttribute('y', y);
+        mark.setAttribute('fill-opacity', '0');
+        mark.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#select');
+
+        mark.addEventListener('mouseenter', () => {
+          console.log('in');
+          mark.setAttribute('fill-opacity', '1');
+        });
+        mark.addEventListener('mouseleave', () => {
+          console.log('out');
+          mark.setAttribute('fill-opacity', '0');
+        });
+        
+
+        svg.appendChild(hole);
+        svg.appendChild(mark);
+      }
+    }
+
+  </script>
