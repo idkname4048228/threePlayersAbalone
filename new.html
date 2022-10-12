@@ -40,15 +40,10 @@
         <stop offset="50%" style="stop-color:#464646" />
       </radialGradient>
         <circle id="hole" r="7" fill = 'url(#hole-color)'/>
-        <circle id="select" r="8" fill = "stroke:#07da00;
-                                          stroke-width:1"/>
-        
-      
+        <circle id="ring" r='8'/>
+        <circle id="select" r="8" fill="transparent"
+        stroke="#05eb37" stroke-width="1"/>
     </defs>
-    
-      
-        
-      
       <polygon
         points="200,100
         150.0,186.60254037844385
@@ -85,17 +80,23 @@
         mark.setAttribute('id', "mark-" + (row  * 10 + cloumn).toString());
         mark.setAttribute('x', (x + (20 * cloumn)).toString());
         mark.setAttribute('y', y);
-        mark.setAttribute('fill-opacity', '0');
+        mark.setAttribute('stroke-opacity', '0');
+        mark.setAttribute('be-click', '0');
         mark.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#select');
 
         mark.addEventListener('mouseenter', () => {
           console.log('in');
-          mark.setAttribute('fill-opacity', '1');
+          mark.setAttribute('stroke-opacity', '1');
         });
         mark.addEventListener('mouseleave', () => {
           console.log('out');
-          mark.setAttribute('fill-opacity', '0');
+          if (mark.getAttribute('be-click') === '0')
+          mark.setAttribute('stroke-opacity', '0');
         });
+        mark.addEventListener('click', () =>{
+          mark.setAttribute('be-click', (mark.getAttribute('be-click') === '0') ? '1' : '0');
+          mark.setAttribute('stroke-opacity', '1');
+        })
         
 
         svg.appendChild(hole);
