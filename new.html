@@ -34,43 +34,47 @@
   <div id="message"></div>
   <div>
     <svg id="svg" viewbox="-50,-50,300,300" xmlns="http://www.w3.org/2000/svg">
-      <defs> 
+      <defs>
         <radialGradient id="hole-color" cx="65%" cy="35%" r="50%">
-        <stop offset="0%" style="stop-color:#393939" />
-        <stop offset="100%" style="stop-color:#464646" />
-      </radialGradient>
-      <radialGradient id="player0-color" cx="65%" cy="40%" r="50%" >
-        <stop offset="0%" style="stop-color:#c0e4c0" />
-        <stop offset="100%" style="stop-color:#22bb22" />
-      </radialGradient>
-      <radialGradient id="player1-color" cx="65%" cy="40%" r="50%" >
-        <stop offset="0%" style="stop-color:#e4c0c0" />
-        <stop offset="100%" style="stop-color:#bb2222" />
-      </radialGradient>
-      <radialGradient id="player2-color" cx="65%" cy="40%" r="50%" >
-        <stop offset="0%" style="stop-color:#c0c0e4" />
-        <stop offset="100%" style="stop-color:#2222bb" />
-      </radialGradient>
+          <stop offset="0%" style="stop-color:#393939" />
+            <stop offset="100%" style="stop-color:#464646" />
+            </radialGradient>
+            <radialGradient id="player0-color" cx="65%" cy="40%" r="50%">
+              <stop offset="0%" style="stop-color:#c0e4c0" />
+                <stop offset="100%" style="stop-color:#22bb22" />
+                </radialGradient>
+                <radialGradient id="player1-color" cx="65%" cy="40%" r="50%">
+                  <stop offset="0%" style="stop-color:#e4c0c0" />
+                    <stop offset="100%" style="stop-color:#bb2222" />
+                    </radialGradient>
+                    <radialGradient id="player2-color" cx="65%" cy="40%"
+                      r="50%">
+                      <stop offset="0%" style="stop-color:#c0c0e4" />
+                        <stop offset="100%" style="stop-color:#2222bb" />
+                        </radialGradient>
 
-        <circle id="hole" r="8" >
-        <circle id="select" r="8" fill="transparent" stroke="#fafafa" stroke-width="1"/>
-    </defs>
-      <polygon
-        points="200,100
-        150.0,186.60254037844385
-        50.0,186.60254037844385
-        0,100
-        50.0,13.397459621556138
-        150.0,13.397459621556138
-        "
-        style="fill:#888888; stroke:#000000; stroke-width:1"/>
-      </svg>
-    </div>
-  </body>
+                        <circle id="hole" r="8">
+                          <circle id="select" r="9" fill="transparent"
+                            stroke="#fafafa" stroke-width="1"/>
+                          </defs>
+                          <polygon
+                            points="200,100
+                            150.0,186.60254037844385
+                            50.0,186.60254037844385
+                            0,100
+                            50.0,13.397459621556138
+                            150.0,13.397459621556138
+                            "
+                            style="fill:#888888; stroke:#000000;
+                            stroke-width:1"/>
+                          </svg>
+                        </div>
+                      </body>
 
-  <script>
+                      <script>
     const svg = document.getElementById('svg');
     const holes = [];
+    const select_holes = [];
     for(let row = 0; row < 9; row++){
       holes.push([]);
       var y = (100 - ((4 - row) * 10 * Math.sqrt(3))).toString();
@@ -114,20 +118,38 @@
         
 
         mark.addEventListener('mouseenter', () => {
-            console.log('in');
+            console.log(select_holes);
+            const map_hole = document.getElementById("hole-" + mark.getAttribute('id').slice(-2) );
+            if(map_hole.getAttribute('fill') === 'url(#hole-color)' || select_holes.length === 3)  return ;
             mark.setAttribute('stroke-opacity', '1');
         });
         mark.addEventListener('mouseleave', () => {
             console.log('out');
+            const map_hole = document.getElementById("hole-" + mark.getAttribute('id').slice(-2) );
+            if(map_hole.getAttribute('fill') === 'url(#hole-color)' || select_holes.length === 3)  return ;
             if (mark.getAttribute('be-click') === '0')
                 mark.setAttribute('stroke-opacity', '0');
         });
         mark.addEventListener('click', () => {
+            const map_hole = document.getElementById("hole-" + mark.getAttribute('id').slice(-2) );
+            if(map_hole.getAttribute('fill') === 'url(#hole-color)')  return ;
+            var click_id = mark.getAttribute('id').slice(-2);
+            console.log(click_id ,  select_holes);
+            index = select_holes.indexOf(click_id);
+            if ( index != -1) {
+              select_holes.splice(index, 1);
+              mark.setAttribute('be-click', (mark.getAttribute('be-click') === '0') ? '1' : '0');
+            mark.setAttribute('stroke-opacity', '1');
+            }else{
+              if (select_holes.length === 3)  return; 
+            select_holes.push(mark.getAttribute('id').slice(-2));
             mark.setAttribute('be-click', (mark.getAttribute('be-click') === '0') ? '1' : '0');
             mark.setAttribute('stroke-opacity', '1');
-            const modify_hole = document.getElementById("hole-" + mark.getAttribute('id').slice(-2) );
-
-            console.log(mark.getAttribute('id').slice(-2));
+          }
+            
+            
+            
+            
         })
 
 
