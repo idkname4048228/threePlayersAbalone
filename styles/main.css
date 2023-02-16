@@ -1,0 +1,45 @@
+div{
+    margin: 0 auto;
+    text-align: center;
+}
+div.title{
+    color: black;
+    font-size: 3rem;
+}
+
+.board{
+    fill:#888888;
+    stroke:#000000;
+    stroke-width:1;
+}
+.boardSvg{
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+.boardDiv{
+    overflow: visible;
+    display: block;
+}
+div.buttonDiv{
+    border: none;
+    width: calc((100%) / 5);
+    margin: auto 0;
+    display: inline-block;
+    text-align: center;
+    overflow: auto;
+}
+div.blockDiv{
+    width: calc((100%) / 10);
+    display: inline-block;
+}
+button{
+    height: 2.5rem;
+    width: 10rem;
+    font-size: 1.5rem;
+    border-radius: 3rem;
+    border-width: 1px;
+}
+div.defSvg{
+    height: 0;
+}

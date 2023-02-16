@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Three Players Abalone</title>
+        <link href="styles/main.css" rel="stylesheet">
+    </head>
+    <body style="background-color:bisque">
+        <div class="defSvg">
+            <svg class="defSvg">
+                <defs>
+                    <radialGradient id="hole-color" cx="65%" cy="35%" r="50%">
+                        <stop offset="0%" style="stop-color:#393939"></stop>
+                        <stop offset="100%" style="stop-color:#464646"></stop>
+                    </radialGradient>
+                    <radialGradient id="player0-color" cx="65%" cy="40%"
+                        r="50%">
+                        <stop offset="0%" style="stop-color:#c0e4c0"></stop>
+                        <stop offset="100%" style="stop-color:#22bb22"></stop>
+                    </radialGradient>
+                    <radialGradient id="player1-color" cx="65%" cy="40%"
+                        r="50%">
+                        <stop offset="0%" style="stop-color:#e4c0c0"></stop>
+                        <stop offset="100%" style="stop-color:#bb2222"></stop>
+                    </radialGradient>
+                    <radialGradient id="player2-color" cx="65%" cy="40%"
+                        r="50%">
+                        <stop offset="0%" style="stop-color:#c0c0e4"></stop>
+                        <stop offset="100%" style="stop-color:#2222bb"></stop>
+                    </radialGradient>
+                    <circle id="hole" r="8"></circle>
+                    <circle id="select" r="8" fill="transparent"
+                        stroke="#fafafa"
+                        stroke-width="1"></circle>
+                </defs>
+            </svg>
+            <svg class="defArrow" width="160" height="100">
+                <symbol id="arrow">
+                    <path d="M5 50 H155" stroke="black" stroke-width="10"
+                        stroke-linecap="round"></path>
+                    <path d="M155 50 L80 5" stroke="black" stroke-width="10"
+                        stroke-linecap="round"></path>
+                    <path d="M155 50 L80 95" stroke="black" stroke-width="10"
+                        stroke-linecap="round"></path>
+                    <path d="M155 50 L75 5 L75 95" stroke="black"
+                        stroke-width="1" stroke-linecap="round"></path>
+                </symbol>
+            </svg>
+        </div>
+
+        <div class="title">
+            <b>三人角力棋</b>
+        </div>
+
+        <div class="boardDiv">
+            <svg width="100%" height="680" class="boardSvg" viewbox="0, 0,
+                200,
+                200" id="svg"
+                xmlns="http://www.w3.org/2000/svg">
+                <polygon
+                    class="board"
+                    points="200,100 150,186 50,186 0,100 50,13 150,13"></polygon>
+                
+            </svg>
+        </div>
+
+        </div>
+        <div style="border:none;">
+            <div class="chooseDiv">
+                <div class="buttonDiv">
+                    <button id="left-up">left up</button>
+                </div>
+                <div class="buttonDiv">
+                    <button id="right-up">right up</button>
+                </div>
+            </div>
+            <div class="chooseDiv-middle">
+                <div class="buttonDiv">
+                    <button id="left-middle">left middle</button>
+                </div>
+                <div class="blockDiv"></div>
+                <div class="buttonDiv">
+                    <button id="right-middle">right-middle</button>
+                </div>
+            </div>
+            <div class="chooseDiv">
+                <div class="buttonDiv">
+                    <button id="left-down">left down</button>
+                </div>
+                <div class="buttonDiv">
+                    <button id="right-down">right down</button>
+                </div>    
+            </div>
+            <div class="chooseDiv">
+                <div class="buttonDiv">
+                    <button id="restart">Restart</button>
+                </div>
+                
+                <div class="buttonDiv">
+                    <button id="end">End</button>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="scripts/main.js" type="text/javascript"></script>
+</html>
