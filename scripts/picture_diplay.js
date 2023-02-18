@@ -28,10 +28,10 @@ function setHoleToEmpty(hole) {
     hole.setAttribute('stroke-width', '1.5');
 }
 
-function generateBoard(){
+function generateBoard() {
     for (let row = 0; row < 9; row++) {
         var y = (100 - ((4 - row) * 10 * Math.sqrt(3))).toString(); //caculate the y axis
-        for (let column = 0; column < 9 - (Math.abs(4 - row)); column++){
+        for (let column = 0; column < 9 - (Math.abs(4 - row)); column++) {
             var x = (11 - (9 - (Math.abs(4 - row)))) * 10;  //caculate the x axis
 
             const hole = document.createElementNS('http://www.w3.org/2000/svg', 'use');
@@ -59,16 +59,21 @@ function updatePiece() {    // 棋子渲染
             let hole = document.querySelector("#hole-" + id.toString());
 
             setHoleToEmpty(hole);
-            if (player0.includes(id)) setHoleToPlayerPiece(hole, 0);
-            if (player1.includes(id)) setHoleToPlayerPiece(hole, 1);
-            if (player2.includes(id)) setHoleToPlayerPiece(hole, 2);
+            if (players[0].includes(id)) setHoleToPlayerPiece(hole, 0);
+            if (players[1].includes(id)) setHoleToPlayerPiece(hole, 1);
+            if (players[2].includes(id)) setHoleToPlayerPiece(hole, 2);
         }
     }
 }
 
+function updateNowPlayer(num) {
+    let nowPlayer = document.querySelector("#now-player");
+    setHoleToPlayerPiece(nowPlayer, num);
+}
+
 function updateButton() {    //button 是否可按
-    let ways = [110, 9, -101, 101, -9, -110];
-    let buttons = [document.querySelector("#right-up"), document.querySelector("#right-middle"), document.querySelector("#right-down"), document.querySelector("#left-up"), document.querySelector("#left-middle"), document.querySelector("#left-down")];
+    let ways = [11, 110, -99, 99, -110, -11];
+    let buttons = [document.querySelector("#left-up"), document.querySelector("#right-up"), document.querySelector("#left-middle"), document.querySelector("#right-middle"), document.querySelector("#left-down"), document.querySelector("#right-down")];
     let unavaiable = [null, null, null, null, null, null];
     if (!gameContinue || chooseHole.length === 0) {
         for (let i = 0; i < buttons.length; i++) {

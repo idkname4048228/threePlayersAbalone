@@ -12,14 +12,52 @@ div.title{
     stroke:#000000;
     stroke-width:1;
 }
-.boardSvg{
-    display: block;
-    margin: 0 auto;
-    text-align: center;
+
+.gameDiv{
+    height: 700px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+.gameDiv > div{
+    margin:auto 0;
 }
 .boardDiv{
-    overflow: visible;
-    display: block;
+    grid-row:1/4;
+    grid-column: 3/5;
+}
+.leftUp{
+    text-align: right;
+    grid-row:1/2;
+    grid-column: 2/3;
+}
+.leftMiddle{
+    grid-row: 2/3;
+    grid-column: 2/3;
+}
+.leftDown{
+    text-align: right;
+    grid-row: 3/4;
+    grid-column: 2/3;
+}
+.rightUp{
+    text-align: left;
+    grid-row: 1/2;
+    grid-column: 5/6;
+}
+.rightMiddle{
+    grid-row: 2/3;
+    grid-column: 5/6;
+}
+.rightDown{
+    text-align: left;
+    grid-row: 3/4;
+    grid-column: 5/6;
+}
+
+.boardSvg{
+    margin: 0 auto;
+    text-align: center;
 }
 div.buttonDiv{
     border: none;
@@ -34,12 +72,24 @@ div.blockDiv{
     display: inline-block;
 }
 button{
-    height: 2.5rem;
-    width: 10rem;
+    height: 40px;
+    width: 160px;
     font-size: 1.5rem;
     border-radius: 3rem;
     border-width: 1px;
 }
 div.defSvg{
     height: 0;
+}
+.nowPlayerDiv{
+    display: grid;
+    grid-template-columns: 13% 14% 13% 20% 13% 14% 13%;
+    grid-template-rows: 1fr;
+    font-size: 36px;
+    text-align: left;
+}
+.containNowPlayer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

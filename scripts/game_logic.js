@@ -98,6 +98,7 @@ function pieceMove(val) {
     checkEnd();
     nowPlayer += 1;
     nowPlayer %= 3;
+    updateNowPlayer(nowPlayer);
 }
 
 function checkOutOfBoundary(id) {
@@ -111,13 +112,13 @@ function checkOutOfBoundary(id) {
 }
 
 function printPlayers() {
-    console.log(player0);
-    console.log(player1);
-    console.log(player2);
+    console.log(players[0]);
+    console.log(players[1]);
+    console.log(players[2]);
 }
 
 function checkEnd() {
-    if (player0.length + player1.length + player2.length == 21) {
+    if (players[0].length + players[1].length + players[2].length <= (9 + 9 + 9 - 6)) {
         gameOver();
     }
 }
